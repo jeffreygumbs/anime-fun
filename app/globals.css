@@ -1,18 +1,91 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
+  --background-image-hero: linear-gradient(
+      100deg,
+      rgba(8, 10, 14, 0.95) 25%,
+      rgba(8, 10, 14, 0.6) 60%,
+      rgba(8, 10, 14, 0.85)
+    ),
+    url("/hero.png");
+  --background-image-hero-art: url("/hero.png");
+
+  --color-ink: #0b0d12;
+  --color-surface: #161921;
+  --color-elevated: #1d212c;
+  --color-accent: #ee1e38;
+  --color-accent-soft: #ff5956;
+  --color-gold: #ffad49;
+
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space), ui-sans-serif, system-ui, sans-serif;
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-glow: glow 5s ease-in-out infinite alternate;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-18px);
+    }
+  }
+
+  @keyframes glow {
+    from {
+      opacity: 0.35;
+    }
+    to {
+      opacity: 0.75;
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-float,
+  .animate-glow {
+    animation: none;
+  }
+}
 
 body {
-  background-color: #000;
+  background-color: var(--color-ink);
+  color: #fff;
 }
 
-.red-gradient {
-  background: linear-gradient(92deg, #ff5956 2.87%, #ee1e38 96.18%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+::selection {
+  background: var(--color-accent);
+  color: #fff;
 }
 
-:root {
-  color-scheme: dark;
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-elevated);
+  border-radius: 999px;
+  border: 2px solid var(--color-ink);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2a3040;
 }
